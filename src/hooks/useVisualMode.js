@@ -15,17 +15,16 @@ export default function useVisualMode(initial) {
 
     } else {
         setHistory(prev => ([...prev, mode]));
-      }
+   } 
 }
 
     const back = () => {
-        if(history.length === 1){
-            setMode(initial);
-        }
-        if(history.length !== 1){
-            history.pop();
-            setMode([history.length - 1]);
-        }
+        if(history.length > 1){
+            const thistory = [...history];
+            thistory.pop();
+            setMode(thistory[thistory.length - 1]);
+            setHistory(thistory);
+        } 
      }
   
     return { mode, transition, back };

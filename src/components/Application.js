@@ -6,22 +6,42 @@ import "components/Application.scss";
 
 import DayList from "components/DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 
 
 export default function Application(props) {
   const [state, setState] = useState({ day: "Monday", days: [], appointments: {} })
  
-  // const dailyAppointments =  getAppointmentsForDay(state, state.day);
-
     const appointments = getAppointmentsForDay(state, state.day);
 
     const interviewersForDay = getInterviewersForDay(state, state.day);
 
     const setDay = day => setState(prev => ({ ...prev, day}));
 
- 
 
+    const bookInterview = function (id, interview) {
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+      setState({
+        ...state,
+        appointments
+      });
+    
+      return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    };
+
+    const cancelAppointment = function(id){
+      return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+
+    }
+
+  
   useEffect(() => {
     Promise.all([
       axios.get('http://localhost:8001/api/days'),
@@ -45,10 +65,14 @@ if (appointments && appointments[0] && state.interviewers){
     time={appointment.time}
     interviewers={interviewersForDay}
     interview={interview}
+    bookInterview={bookInterview}
+    cancelAppointment={cancelAppointment}
   />
   );
   })
 }
+
+
   
 
   return (

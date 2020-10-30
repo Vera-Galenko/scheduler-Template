@@ -1,3 +1,4 @@
+
 const  getAppointmentsForDay = function(state, day) {
   if(!state.days.length === 0){
     return [];
@@ -36,4 +37,6 @@ const getInterviewersForDay = function(state, day) {
 
   }
 
-export { getAppointmentsForDay, getInterview, getInterviewersForDay};
+ 
+
+export { getAppointmentsForDay, getInterview, getInterviewersForDay };

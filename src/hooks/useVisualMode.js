@@ -10,9 +10,8 @@ export default function useVisualMode(initial) {
      setMode(mode);
      
      if (replace && history.length !== 1){
-   
-        setHistory(prev => ([...prev.slice(0, prev.length -1)], mode))
- 
+       
+        setHistory(prev => ([...prev.slice(0, prev.length -1), mode]))
 
      } else {
         setHistory(prev => ([...prev, mode]));

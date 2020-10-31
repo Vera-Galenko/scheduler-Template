@@ -43,7 +43,7 @@ export default function Appointment(props) {
         student: name,
         interviewer})
       .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true))
+      .catch(error => transition(ERROR_SAVE, true));
     } 
   };
 
@@ -51,7 +51,7 @@ export default function Appointment(props) {
     transition(DELETING, true);
     props.cancelAppointment(props.id)
     .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true))
+    .catch(error => transition(ERROR_DELETE, true));
   }
   
 

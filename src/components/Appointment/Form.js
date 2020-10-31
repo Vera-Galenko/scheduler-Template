@@ -37,7 +37,7 @@ return (
     interviewers={props.interviewers}
     value={interviewer} 
     onChange={setInterviewer} 
-    // setInterviewer={event => props.setInterviewer(props.interviewer.id)} 
+    setInterviewer={event => props.setInterviewer(props.interviewer.id)} 
     />
   </section>
   <section className="appointment__card-right">

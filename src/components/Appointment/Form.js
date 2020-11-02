@@ -8,6 +8,7 @@ import "../Appointment/styles.scss";
 
 export default function Form(props) {
     const [name, setName] = useState(props.name || "");
+    const [error, setError] = useState("");
     const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
     const reset = function(){
@@ -18,6 +19,19 @@ export default function Form(props) {
     const cancel = function(){
         reset();
         props.onCancel();
+    }
+
+    function validate() {
+      if (name === "") {
+        setError("Student name cannot be blank");
+        return;
+      }
+      if (interviewer === null) {
+        setError("Select an interviewer please.");
+        return;
+      }
+      setError("");
+      props.onSave(name, interviewer);
     }
 
 return (
@@ -31,7 +45,9 @@ return (
         placeholder="Enter Student Name"
         value={name}
         onChange={event => setName(event.target.value)}
+        data-testid="student-name-input"
     />
+    <section className="appointment__validation">{error}</section>
     </form>
     <InterviewerList
     interviewers={props.interviewers}
@@ -46,7 +62,8 @@ return (
       onClick={() => cancel()}
       >Cancel</Button>
       <Button confirm
-      onClick={() => props.onSave(name, interviewer)}
+      // onClick={() => props.onSave(name, interviewer)}
+      onClick={e => validate()}
     //   onClick={props.onSave}
       >Save</Button>
     </section>

@@ -8,6 +8,8 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
 
    
     const setDay = day => setState(prev => ({ ...prev, day}));
+
+    //block for updating the spots
    
     const appointmentsForDay = (day, state) =>
     state.days.find(d => d.name === day).appointments;
@@ -47,7 +49,7 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
     });
 }, []);
 
-
+    
     const bookInterview = function (id, interview) {
         const appointment = {
           ...state.appointments[id],
@@ -61,7 +63,7 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
           ...state,
           appointments
         });
-        const updateDB = Promise.resolve(
+        const updateData = Promise.resolve(
          axios.put(`http://localhost:8001/api/appointments/${id}`, {
               interview: {
                 student: interview.student,
@@ -69,7 +71,7 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
               },
             }),
           );
-          updateDB
+          updateData
             .then(() => {
               setState({
                 ...state,
@@ -80,7 +82,7 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
               }));
             })
             .catch(error => console.log("update", error));
-          return updateDB;
+          return updateData;
       };
   
   

@@ -62,9 +62,7 @@ return (
       onClick={() => cancel()}
       >Cancel</Button>
       <Button confirm
-      // onClick={() => props.onSave(name, interviewer)}
       onClick={e => validate()}
-    //   onClick={props.onSave}
       >Save</Button>
     </section>
   </section>

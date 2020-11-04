@@ -21,10 +21,14 @@ npm test
 ```
 ## Interface demonstrartion
 
-
+Initial screen with empty interview slots.
 
 !["Initial screen with empty interview slots."](https://github.com/Vera-Galenko/scheduler-Template/blob/master/docs/Empty%20screen.png)
 
+Interview booking form.
+
 !["Interview booking form."](https://github.com/Vera-Galenko/scheduler-Template/blob/master/docs/Booking%20Interview.png)
+
+Screen with interview.
 
 !["Screen with interview."](https://github.com/Vera-Galenko/scheduler-Template/blob/master/docs/booked%20Interview.png)

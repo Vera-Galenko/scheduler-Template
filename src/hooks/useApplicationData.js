@@ -59,10 +59,7 @@ const [state, setState] = useState({ day: "Monday", days: [], appointments: {} }
           ...state.appointments,
           [id]: appointment
         };
-        setState({
-          ...state,
-          appointments
-        });
+   
         const updateData = Promise.resolve(
          axios.put(`http://localhost:8001/api/appointments/${id}`, {
               interview: {

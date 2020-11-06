@@ -4,11 +4,11 @@ export default function useVisualMode(initial) {
     const [mode, setMode] = useState(initial);
     const [history, setHistory] = useState([initial]);
 
-
+  //the function sets the mode and the browsing history
    const transition = (mode, replace = false) => { 
      
      setMode(mode);
-     
+     //replace value indicates when the history must skip a step
      if (replace && history.length !== 1){
        
         setHistory(prev => ([...prev.slice(0, prev.length -1), mode]))
@@ -17,6 +17,8 @@ export default function useVisualMode(initial) {
         setHistory(prev => ([...prev, mode]));
      } 
    };
+
+   //the function governs the backwards movements
 
     const back = () => {
         if (history.length === 1) {
